@@ -1,11 +1,14 @@
-<table class="table">
+<div class="container">
+<div class="table-responsive">
+  <table class="main-table text-center table table-bordered">
   <thead>
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">nom</th>
-      <th scope="col">prénom</th>
-      <th scope="col">email</th>
-      <th scope="col">date de naissance</th>
+      <td scope="col">id</td>
+      <td scope="col">nom</td>
+      <td scope="col">prénom</td>
+      <td scope="col">email</td>
+      <td scope="col">date de naissance</td>
+      <td scope="col">controls</td>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +19,7 @@
         <td><?php echo $value['stu_firstname'];?></td>
         <td><?php echo $value['stu_email']?></td>
         <td><?php echo $value['stu_birthdate']?></td>
+        <td><a href="student.php".<?php $student[$value]['stu_id']?>.class="btn btn-success">edit</a></td>
         </tr>
         <?php endforeach; ?>
   </tbody>

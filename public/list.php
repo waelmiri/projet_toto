@@ -19,6 +19,12 @@ $sql = 'SELECT *
   print_r($student);
   echo '<br>';
 
+
+
+
+
+
+
 //A la fin, j'afficher
 require_once __DIR__.'/../view/header.php';
 require_once __DIR__.'/../view/list.php';
