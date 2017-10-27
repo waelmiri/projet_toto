@@ -1,0 +1,14 @@
+{
+    "name": "etudiant/projet_toto",
+    "description": "Gestion des etudiants de session de formation xebforce3",
+    "type": "project",
+    "authors": [
+        {
+            "name": "wael",
+            "email": "theblack.north1989@gmail.com"
+        }
+    ],
+    "require": {
+        "social-links/social-links": "^1.13"
+    }
+}

@@ -1,12 +1,21 @@
-<pre>
-
 <?php
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 
-$sql = 'SELECT *
-        FROM student ';
+$page = isset($GET['page']) ? intval($Get['page']) : 1;
+
+$offset = ($page-1) * 3;
+
+if ($offset <= 0 ) {
+  $offset = 0;
+}
+
+
+$sql = "SELECT *
+        FROM student
+        LIMIT 3
+        offset $offset ";
 
   $pdoStatement = $pdo->query($sql);
   // Si erreur dans la requête
@@ -16,8 +25,7 @@ $sql = 'SELECT *
   }
   // Récupération des résultats
   $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-  print_r($student);
-  echo '<br>';
+
 
 
 
@@ -45,5 +53,3 @@ require_once __DIR__.'/../view/footer.php';
 
 
 ?>
-
-</pre>
