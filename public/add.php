@@ -68,9 +68,13 @@ if (!empty($_POST)) {
 $sql = "INSERT INTO `student`(`stu_lastname`, `stu_firstname`, `stu_birthdate`, `stu_email`, `stu_friendliness`, `session_ses_id`, `city_cit_id`, `stu_inserted`)
         VALUES ('$lastname','$firstname',$birthday,'$email',$friendliness,$session,$city,CURRENT_TIMESTAMP)";
  $insert = $pdo->exec($sql);
+ $lastId = $pdo->lastInsertId();
+ header("Location: /student.php?id={$lastId}");
+ 
  if ($insert === false) {
    print_r($pdo->errorInfo());
  }
+
   }
 }
 

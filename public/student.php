@@ -14,8 +14,8 @@ $studentId = isset($_GET['id']) ? intval($_GET['id']) : 0 ;
 
 $pdoStatement = $pdo->prepare($sql);
 $pdoStatement->bindValue(':id',$studentId , PDO::PARAM_INT);
-$pdoStatement->execute();
-if ($pdoStatement === false) {
+
+if ($pdoStatement->execute() === false) {
   print_r($pdoStatement->errorInfo());
   exit;
 }
