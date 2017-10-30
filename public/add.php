@@ -16,7 +16,7 @@ $sql2 = "SELECT ses_id, ses_number , ses_start_date, ses_end_date
 $pdoStatement2 = $pdo->prepare($sql2);
 $pdoStatement2->execute();
 $sessions = $pdoStatement2->fetchAll(PDO::FETCH_ASSOC);
-print_r($sessions);
+
 
 // FOrmulaire soumis
 if (!empty($_POST)) {
@@ -29,24 +29,16 @@ if (!empty($_POST)) {
   $session = isset($_POST['session']) ? $_POST['session'] : '';
   $city = isset($_POST['city']) ? $_POST['city'] : '';
 
-
   // nettoyer les variables
 
   $lastname = strtoupper(trim(strip_tags($lastname)));
   $firstname = strtoupper(trim(strip_tags($firstname)));
   $email = trim(strip_tags($email));
-  $sessions = substr($sessions,0,1);
+  $session = substr($session,0,1);
   $city = substr($city,0,2);
   $session = trim($session);
   $city = trim($city);
-
-  print_r($session);
-  print_r($city);
-
-
-
   // valider les données
-
   $formOk = true;
   if (strlen($lastname)<2){
     $formOk = false;
@@ -56,11 +48,11 @@ if (!empty($_POST)) {
     $formOk = false;
     echo "NOM invalie.<br>";
   }
-  if (!empty($birthday)){
-    $formOk = false;
+  if (empty($birthday)){
     echo "la date de la naissance incorrect.<br>";
+    $formOk = false;
   }
-  if (filter_var($email,FILTER_VALIDATE_EMAIL)=== false){
+  if (filter_var($email,FILTER_VALIDATE_EMAIL) === false){
     $formOk = false;
     echo "Email incorrect.<br>";
   }
@@ -72,27 +64,15 @@ if (!empty($_POST)) {
     $formOk = false;
     echo "la Ville incorrect.<br>";
   }
-
   if ($formOk) {
-  	echo '$lastname='.$lastname.'<br>';
-  	echo '$firstname='.$firstname.'<br>';
-  	echo '$email='.$email.'<br>';
-  	echo '$birthday='.$phone.'<br>';
-    echo '$session=' .$session.'<br>';
-    echo "city".$city.'<br>';
-  		// Je n'affiche pas le formulaire
-  		$displayForm = false;
-
+$sql = "INSERT INTO `student`(`stu_lastname`, `stu_firstname`, `stu_birthdate`, `stu_email`, `stu_friendliness`, `session_ses_id`, `city_cit_id`, `stu_inserted`)
+        VALUES ('$lastname','$firstname',$birthday,'$email',$friendliness,$session,$city,CURRENT_TIMESTAMP)";
+ $insert = $pdo->exec($sql);
+ if ($insert === false) {
+   print_r($pdo->errorInfo());
+ }
   }
 }
-
-
-
-
-
-
-
-
 
 
 
