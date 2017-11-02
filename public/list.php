@@ -29,22 +29,23 @@ if (!empty($_GET)) {
     //$row['stu_lastname']. $row['stu_firstname'].$row['stu_email'];
   //}
 
-}elseif(!empty($_GET['id'])) {
+}//elseif(!empty($_GET['id'])) {
 
-$sessionInfo = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$sql2 = " SELECT *
-          FROM student
-          INNER JOIN session ON session.ses_id = student.session_ses_id
-          WHERE ses_id = :id";
-$pdoStatement = $pdo->prepare($sql2);
-$pdoStatement->bindValue(':id',$sessionInfo,PDO::PARAM_INT);
-
-if ($pdoStatement->execute() === false) {
-  print_r($pdoStatement->errorInfo());
-  exit;
-}
-$student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-}else{
+//$sessionInfo = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// $sql2 = " SELECT *
+//           FROM student
+//           INNER JOIN session ON session.ses_id = student.session_ses_id
+//           WHERE ses_id = :id";
+// $pdoStatement = $pdo->prepare($sql2);
+// $pdoStatement->bindValue(':id',$sessionInfo,PDO::PARAM_INT);
+//
+// if ($pdoStatement->execute() === false) {
+//   print_r($pdoStatement->errorInfo());
+//   exit;
+// }
+// $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+//}
+else{
 
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -70,11 +71,18 @@ $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $delete = isset($_GET['de']) ? intval($_GET['de']) : 0;
-$sql = " DELETE *
+$sql = " DELETE
           FROM student
-          WHERE stu_id = :id ";
-  $pdoStatement = $pdo->query($sql);
+          WHERE stu_id = :de ";
+  $pdoStatement = $pdo->prepare($sql);
+  $pdoStatement->bindValue(':de',$delete,PDO::FETCH_ASSOC);
 
+  if ($pdoStatement->execute() === false) {
+    print_r($pdoStatement->errorInfo());
+    exit;
+  }
+$deleteId = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+print_r($deleteId);
 
 //A la fin, j'afficher
 require_once __DIR__.'/../view/header.php';
