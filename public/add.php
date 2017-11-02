@@ -42,11 +42,11 @@ if (!empty($_POST)) {
   $formOk = true;
   if (strlen($lastname)<2){
     $formOk = false;
-    echo "NOM invalie.<br>";
+    echo "NOM incorrect.<br>";
   }
   if (strlen($firstname)<2){
     $formOk = false;
-    echo "NOM invalie.<br>";
+    echo "NOM incorrect.<br>";
   }
   if (empty($birthday)){
     echo "la date de la naissance incorrect.<br>";
@@ -70,7 +70,7 @@ $sql = "INSERT INTO `student`(`stu_lastname`, `stu_firstname`, `stu_birthdate`, 
  $insert = $pdo->exec($sql);
  $lastId = $pdo->lastInsertId();
  header("Location: /student.php?id={$lastId}");
- 
+
  if ($insert === false) {
    print_r($pdo->errorInfo());
  }

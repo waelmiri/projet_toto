@@ -4,7 +4,7 @@
 require_once __DIR__.'/../inc/config.php';
 
 $studentId = isset($_GET['id']) ? intval($_GET['id']) : 0 ;
-  $sql = "SELECT stu_lastname, stu_firstname , stu_birthdate , stu_email , stu_friendliness , cit_name ,ses_number, loc_name
+  $sql = "SELECT  stu_lastname, stu_firstname , stu_birthdate , stu_email , stu_friendliness , cit_name ,ses_number, loc_name
           FROM student
           INNER JOIN city ON city.cit_id = student.city_cit_id
           INNER JOIN session ON session.ses_id = student.session_ses_id
@@ -20,12 +20,12 @@ if ($pdoStatement->execute() === false) {
   exit;
 }
 $etudiant = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-print_r($etudiant);
 
 $day = $etudiant['stu_birthdate'];
 $tody = date('Y');
 $result = $tody - $day;
 
+$public = __DIR__.'/../public/';
 
 require_once __DIR__.'/../view/header.php';
 require_once __DIR__.'/../view/student.php';

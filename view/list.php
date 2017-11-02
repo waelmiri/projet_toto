@@ -20,8 +20,8 @@
           <td><?php echo $value['stu_firstname'];?></td>
           <td><?php echo $value['stu_email']?></td>
           <td><?php echo $value['stu_birthdate']?></td>
-          <td><a href="student.php?id=<?php echo $value['stu_id']?>" class="btn btn-success">edit</a></td>
-          <td><a href="student.php?id=<?php echo $value['stu_id']?>" class="btn btn-danger">Delete</a></td>
+          <td><a href="student.php?id=<?php echo $value['stu_id']?>" class="btn btn-success">Détail</a></td>
+          <td><a href="home.php?de=<?php echo $value['stu_id']?>" class="btn btn-danger">Delete</a></td>
         </tr>
           <?php endforeach; ?>
       </tbody>

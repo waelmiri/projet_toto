@@ -44,8 +44,25 @@ if ($pdoStatement->execute() === false) {
   exit;
 }
 $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-}else{
 
+}elseif (!empty($_GET['de'])){
+
+  $delete = isset($_GET['de']) ? intval($_GET['de']) : 0;
+  $sql3 = " DELETE
+            FROM student
+            WHERE stu_id = :de ";
+      $pdoStatement = $pdo->prepare($sql3);
+      $pdoStatement->bindValue(':de', $delete , PDO::PARAM_INT);
+
+        if ($pdoStatement->execute() === false) {
+        print_r($pdoStatement->errorInfo());
+        exit;
+      }
+    $student = $pdoStatement->fetchAll(PDO::fetch_ASSOC);
+    header("location: list.php");
+        print_r($student);
+
+}else{
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
   $offset = ($page-1) * 5;
@@ -69,11 +86,17 @@ $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
   $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$delete = isset($_GET['de']) ? intval($_GET['de']) : 0;
-$sql = " DELETE *
-          FROM student
-          WHERE stu_id = :id ";
-  $pdoStatement = $pdo->query($sql);
+
+
+
+
+
+
+
+
+
+
+
 
 
 //A la fin, j'afficher
