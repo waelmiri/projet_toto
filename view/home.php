@@ -1,4 +1,5 @@
 <div class="container">
+
   <?php foreach ($training as $key => $value) : ?>
   <div class="card mx-auto mt-5">
     <div class="card-bloc">
@@ -27,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($menu as $key => $value): ?>
+          <?php foreach ($session as $key => $value): ?>
           <tr>
             <td>Session n<?php echo $value['ses_number']; ?></td>
             <td><?php echo $value['ses_start_date']; ?></td>
@@ -54,6 +55,7 @@
             </tr>
           </thead>
           <tbody>
+
             <?php foreach ($count as $key=>$value): ?>
             <tr>
               <td><?php echo $value['cit_name'] ?></td>

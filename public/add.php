@@ -2,20 +2,22 @@
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
+require_once __DIR__.'/../inc/functions.php';
+
 
  // récupération la ville
- $sql = "SELECT cit_name ,cit_id FROM city";
- $pdoStatement = $pdo->prepare($sql);
- $pdoStatement->execute();
- $cities = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-
+ // $sql = "SELECT cit_name ,cit_id FROM city";
+ // $pdoStatement = $pdo->prepare($sql);
+ // $pdoStatement->execute();
+ // $cities = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+$cities = city();
  //récupération la liste sessions
-
-$sql2 = "SELECT ses_id, ses_number , ses_start_date, ses_end_date
-          FROM session";
-$pdoStatement2 = $pdo->prepare($sql2);
-$pdoStatement2->execute();
-$sessions = $pdoStatement2->fetchAll(PDO::FETCH_ASSOC);
+$sessions = session();
+// $sql2 = "SELECT ses_id, ses_number , ses_start_date, ses_end_date
+//           FROM session";
+// $pdoStatement2 = $pdo->prepare($sql2);
+// $pdoStatement2->execute();
+// $sessions = $pdoStatement2->fetchAll(PDO::FETCH_ASSOC);
 
 
 // FOrmulaire soumis
@@ -42,11 +44,11 @@ if (!empty($_POST)) {
   $formOk = true;
   if (strlen($lastname)<2){
     $formOk = false;
-    echo "NOM invalie.<br>";
+    echo "NOM incorrect.<br>";
   }
   if (strlen($firstname)<2){
     $formOk = false;
-    echo "NOM invalie.<br>";
+    echo "NOM incorrect.<br>";
   }
   if (empty($birthday)){
     echo "la date de la naissance incorrect.<br>";
@@ -69,8 +71,8 @@ $sql = "INSERT INTO `student`(`stu_lastname`, `stu_firstname`, `stu_birthdate`, 
         VALUES ('$lastname','$firstname',$birthday,'$email',$friendliness,$session,$city,CURRENT_TIMESTAMP)";
  $insert = $pdo->exec($sql);
  $lastId = $pdo->lastInsertId();
- header("Location: /student.php?id={$lastId}");
- 
+ header("Location: student.php?id={$lastId}");
+
  if ($insert === false) {
    print_r($pdo->errorInfo());
  }
