@@ -209,7 +209,8 @@
 -------------------------
 
 - public/add.php & public/edit.php :
-	* comme les 2 fichiers sont similaires, faire en sorte d'ajouter et modifier dans un seul et unique fichier
+	* comme les 2 fichiers sont similaires, faire en sorte d'ajouter
+  et modifier dans un seul et unique fichier
 
 */
 
