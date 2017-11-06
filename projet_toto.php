@@ -70,12 +70,15 @@
 ----------------------------
 
 - public/list.php :
-	* pour chaque ligne du tableau (<table>), ajouer un bouton (lien) qui envoie sur la page student
+	* pour chaque ligne du tableau (<table>), ajouer un bouton (lien) qui
+   envoie sur la page student
 
 - public/student.php :
 	* r�cup�rer toutes les informations pour l'�tudiant sp�cifi�
 	* inclure la vue correspondant � la page "student"
-	* afficher les informations (id, nom, pr�nom, email, date de naissance, age, ville, sympathie, num�ro et nom de session). Attention, l'affichage se fait dans la vue (view) et je ne veux pas de tableau (<table>)
+	* afficher les informations (id, nom, pr�nom, email, date de naissance, age, ville,
+   sympathie, num�ro et nom de session). Attention, l'affichage se fait
+   dans la vue (view) et je ne veux pas de tableau (<table>)
 
 */
 
@@ -192,10 +195,12 @@
 --------------------------------------
 
 - inc/functions.php :
-	* �crire une fonction pour chaque requ�te SQL. Ces fonctions retourneront le tableau de r�sultats (fetchAll ou tableau format� selon besoin)
+	* �crire une fonction pour chaque requ�te SQL. Ces fonctions retourneront
+  le tableau de r�sultats (fetchAll ou tableau format� selon besoin)
 
 - public/*.php :
-	* il ne doit plus y avoir de requ�tes. Il faut toutes les d�placer dans une fonction dans inc/functions.php
+	* il ne doit plus y avoir de requ�tes. Il faut toutes les d�placer
+   dans une fonction dans inc/functions.php
 	* ne pas oublier d'appeler la fonction cr��e, puis de r�cup�rer son r�sultat
 
 */

@@ -14,7 +14,7 @@
             <li class="list-group-item">Sympathie : <?php echo $etudiant['stu_friendliness'];?></li>
             <li class="list-group-item">nom de Session : <?php echo $etudiant['loc_name'];?></li>
             <li class="list-group-item">Numéro de session : <?php echo $etudiant['ses_number'];?></li>
-            <li class="list-group-item"><a href="edit.php?id=<?php echo $studentId ?>" class="btn btn-success">Edit</a></li>
+            <li class="list-group-item"><a href="edit.php?id=<?php echo $studentId ?>" class="btn btn-success">Edit </a></li>
           </ul>
 
         </tr>
