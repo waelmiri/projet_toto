@@ -3,7 +3,7 @@
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 
-if (!empty($_GET)) {
+if (!empty($_GET['search'])) {
 
   $search = isset($_GET['search']) ? trim($_GET['search']) : '';
   $search = preg_replace("#[^0-9a-z]#i","",$search);
@@ -29,7 +29,6 @@ if (!empty($_GET)) {
     //$row['stu_lastname']. $row['stu_firstname'].$row['stu_email'];
   //}
 
-<<<<<<< HEAD
 }elseif(!empty($_GET['id'])) {
 
 $sessionInfo = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -45,25 +44,6 @@ if ($pdoStatement->execute() === false) {
   exit;
 }
 $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-=======
-}//elseif(!empty($_GET['id'])) {
-
-//$sessionInfo = isset($_GET['id']) ? intval($_GET['id']) : 0;
-// $sql2 = " SELECT *
-//           FROM student
-//           INNER JOIN session ON session.ses_id = student.session_ses_id
-//           WHERE ses_id = :id";
-// $pdoStatement = $pdo->prepare($sql2);
-// $pdoStatement->bindValue(':id',$sessionInfo,PDO::PARAM_INT);
-//
-// if ($pdoStatement->execute() === false) {
-//   print_r($pdoStatement->errorInfo());
-//   exit;
-// }
-// $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-//}
-else{
->>>>>>> 3e58157edcb6c7efae21cc39a07dd21f2eeb4720
 
 }elseif (!empty($_GET['de'])){
 
@@ -78,9 +58,8 @@ else{
         print_r($pdoStatement->errorInfo());
         exit;
       }
-    $student = $pdoStatement->fetchAll(PDO::fetch_ASSOC);
-    header("location: list.php");
-        print_r($student);
+    $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+    header("location: list.php");        
 
 }else{
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -106,33 +85,9 @@ else{
   $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 }
 
-<<<<<<< HEAD
 
 
 
-
-
-
-
-
-
-
-
-=======
-$delete = isset($_GET['de']) ? intval($_GET['de']) : 0;
-$sql = " DELETE
-          FROM student
-          WHERE stu_id = :de ";
-  $pdoStatement = $pdo->prepare($sql);
-  $pdoStatement->bindValue(':de',$delete,PDO::FETCH_ASSOC);
->>>>>>> 3e58157edcb6c7efae21cc39a07dd21f2eeb4720
-
-  if ($pdoStatement->execute() === false) {
-    print_r($pdoStatement->errorInfo());
-    exit;
-  }
-$deleteId = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-print_r($deleteId);
 
 //A la fin, j'afficher
 require_once __DIR__.'/../view/header.php';

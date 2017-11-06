@@ -20,10 +20,6 @@ if ($pdoStatement->execute() === false) {
   exit;
 }
 $etudiant = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-<<<<<<< HEAD
-=======
-
->>>>>>> 3e58157edcb6c7efae21cc39a07dd21f2eeb4720
 
 $day = $etudiant['stu_birthdate'];
 $tody = date('Y');

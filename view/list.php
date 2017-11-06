@@ -20,13 +20,9 @@
           <td><?php echo $value['stu_firstname'];?></td>
           <td><?php echo $value['stu_email']?></td>
           <td><?php echo $value['stu_birthdate']?></td>
-<<<<<<< HEAD
+
           <td><a href="student.php?id=<?php echo $value['stu_id']?>" class="btn btn-success">Détail</a></td>
-          <td><a href="home.php?de=<?php echo $value['stu_id']?>" class="btn btn-danger">Delete</a></td>
-=======
-        <! <td><a href="student.php?id=<?php echo $value['stu_id']?>" class="btn btn-success">edit</a></td>
-          <td><a href="student.php?de=<?php echo $value['stu_id']?>" class="btn btn-danger">Delete</a></td>
->>>>>>> 3e58157edcb6c7efae21cc39a07dd21f2eeb4720
+          <td><a href="list.php?de=<?php echo $value['stu_id']?>" class="btn btn-danger">Delete</a></td>
         </tr>
           <?php endforeach; ?>
       </tbody>

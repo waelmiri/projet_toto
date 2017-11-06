@@ -133,7 +133,7 @@
 	* r�cup�rer toutes donn�es sur les sessions en DB (nom de la session, num�ro, dates et lieu)
 	* inclure la vue correspondant � la page "home"
 	* afficher toutes les sessions, regroup�es par lieu :
-		Fit4Coding Esch-Belval
+		Fit4Coding Esch-B.elval
 		Session 1	01/01/2015	31/12/2015
 		Session 2	01/01/2016	31/12/2016
 		Session 3	01/01/2017	31/12/2017
