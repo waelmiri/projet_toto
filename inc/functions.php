@@ -29,8 +29,6 @@ function showAll($page){
   }
 
 
-
-
 function student($studentId){
   global $pdo;
   $sql = "SELECT stu_lastname, stu_firstname , stu_birthdate , stu_email , ses_id,
@@ -142,7 +140,7 @@ $sql3 = " DELETE
           FROM student
           WHERE stu_id = :de ";
     $pdoStatement = $pdo->prepare($sql3);
-    $pdoStatement->bindValue(':de', $delete , PDO::PARAM_INT);
+    $pdoStatement->bindValue(':de', $de , PDO::PARAM_INT);
 
     if ($pdoStatement->execute() === false) {
       print_r($pdoStatement->errorInfo());
@@ -168,6 +166,23 @@ function city(){
 }
 
 
+function verification($email){
+
+  global $pdo;
+
+  $sql ="SELECT * FROM user WHERE usr_email = :email";
+  $pdoStatement = $pdo->prepare($sql);
+  $pdoStatement->bindValue(':email', $email, PDO::PARAM_STR);
+
+  if ($pdoStatement->execute() === false) {
+    print_r($pdoStatement->errorInfo());
+    exit;
+  }
+  $test = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+
+  return $test;
+
+}
 
 
 

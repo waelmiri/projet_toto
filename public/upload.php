@@ -1,6 +1,11 @@
 <pre><?php
 require_once __DIR__.'/../inc/config.php';
 
+session_start();
+if($_SESSION['user']){
+  echo "welcom ".$SESSION['user'];
+}
+
 if(!empty($_POST['upload'])){
 
   print_r($_POST);

@@ -3,6 +3,10 @@
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 
+session_start();
+if($_SESSION['user']){
+  echo "welcom ".$SESSION['user'];
+}
 if (!empty($_GET['search'])) {
 
   $search = isset($_GET['search']) ? trim($_GET['search']) : '';
@@ -59,7 +63,7 @@ $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         exit;
       }
     $student = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-    header("location: list.php");        
+    header("location: list.php");
 
 }else{
   $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

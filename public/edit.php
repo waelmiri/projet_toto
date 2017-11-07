@@ -3,7 +3,10 @@
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 require_once __DIR__.'/../inc/functions.php';
-
+session_start();
+if($_SESSION['user']){
+  echo "welcom ".$SESSION['user'];
+}
 // $sql = "SELECT cit_name ,cit_id FROM city";
 // $pdoStatement = $pdo->prepare($sql);
 // $pdoStatement->execute();

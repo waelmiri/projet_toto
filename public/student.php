@@ -2,7 +2,10 @@
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
-
+session_start();
+if($_SESSION['user']){
+  echo "welcom ".$SESSION['user'];
+}
 $studentId = isset($_GET['id']) ? intval($_GET['id']) : 0 ;
   $sql = "SELECT  stu_lastname, stu_firstname , stu_birthdate , stu_email , stu_friendliness , cit_name ,ses_number, loc_name
           FROM student
