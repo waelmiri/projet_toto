@@ -40,12 +40,15 @@ if(!empty($_POST)){
       exit;
     }
     $testAll = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-    if (password_verify($password, $testAll['usr_password'])) {
+    //if (password_verify($password, $testAll['usr_password'])) {
+      if (count($testAll) > 0 && password_verify($password,$testAll['usr_password'])) {
       echo $testAll['usr_id'].'<br>';
       $idServer = $_SERVER['SERVER_ADDR'];
       //echo $_SERVER["REMOTE_ADDR"];
       echo $idServer;
       $_SESSION['usr_email'] = 'user';
+      //$_SESSION['user'] = $user[0]['id'];
+      //$_SESSION['user_fullname'] = $user[0]['firstname'] . ' ' . $user[0]['lastname'];
 
     } else {
       echo 'Invalid password';
@@ -54,6 +57,7 @@ if(!empty($_POST)){
 }
 
 
+            // L'utilisateur existe bien en base de donnée avec le mail spécifié, et le mot de passe correspond, il est donc authentifié
 
 
 
