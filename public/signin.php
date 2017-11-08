@@ -1,4 +1,4 @@
-<pre><?php
+<?php
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
@@ -27,7 +27,7 @@ if(!empty($_POST)){
 
   if($formOk){
 
-    $sql = " SELECT usr_id, usr_password , usr_email
+    $sql = " SELECT usr_id, usr_password , usr_email , usr_role
             FROM user
             WHERE usr_email  = :email ";
 
@@ -41,21 +41,23 @@ if(!empty($_POST)){
     }
     $testAll = $pdoStatement->fetch(PDO::FETCH_ASSOC);
     //if (password_verify($password, $testAll['usr_password'])) {
-      if (count($testAll) > 0 && password_verify($password,$testAll['usr_password'])) {
+    if (count($testAll) > 0 && password_verify($password,$testAll['usr_password'])) {
       echo $testAll['usr_id'].'<br>';
       $idServer = $_SERVER['SERVER_ADDR'];
       //echo $_SERVER["REMOTE_ADDR"];
-      echo $idServer;
-      $_SESSION['usr_email'] = 'user';
+      echo $idServer.'<br>';
+      $_SESSION['username'] = $testAll['usr_id'];
+      $_SESSION['IP'] = $_SERVER['SERVER_ADDR'];
+      $_SESSION['role'] = $testAll['usr_role'];
       //$_SESSION['user'] = $user[0]['id'];
       //$_SESSION['user_fullname'] = $user[0]['firstname'] . ' ' . $user[0]['lastname'];
-
+      echo 'Welcome monsieur ' . $_SESSION['username'];
     } else {
       echo 'Invalid password';
     }
   }
 }
-
+print_r($_SESSION);
 
             // L'utilisateur existe bien en base de donnée avec le mail spécifié, et le mot de passe correspond, il est donc authentifié
 

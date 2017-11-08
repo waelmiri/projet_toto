@@ -31,20 +31,43 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.php">Toutes les sessions<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="list.php">Toutes les étudiants</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="add.php">Ajout d'un étudiant</a>
-        </li>
+        <?php if(isset($_SESSION['username'])):?>
+          <?php echo '
+            <li class="nav-item">
+              <a class="nav-link" href="list.php">Toutes les étudiants</a>
+            </li>'?>
+        <?php else:?>
+          <?php echo '';?>
+        <?php endif;?>
+        <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin'):?>
+          <?php echo '<li class="nav-item">
+          <a class="nav-link" href="add.php">Ajout d\'un étudiant</a>
+        </li>'; ?>
+            <?php else: ?>
+              <?php echo " ";?>
+            <?php endif; ?>
+        <?php if(isset($_SESSION['username'])):?>
+          <?php echo '
         <li class="nav-item">
           <a class="nav-link" href="upload.php">Upload des fichiers</a>
         </li>
+        <li class="nav-item">
+              <a class="nav-link" href="disconnect.php">déconnexion</a>
+            </li> ';?>
+        <?php else: ?>
+          <?php echo '
         <li class="nav-item">
           <a class="nav-link" href="signup.php">SignUp</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="signin.php">SignIn</a>
+        </li>'
+        ?>
+      <?php endif;?>
+        <li class="nav-item">
+          <?php if(isset($_SESSION['username'])):?>
+          <?php echo 'ID de l\'utilisateur '.$_SESSION['username']?>
+        <?php endif;?>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" method="gets" action="">

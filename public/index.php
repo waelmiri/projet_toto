@@ -5,8 +5,12 @@
 require_once __DIR__.'/../inc/config.php';
 require_once __DIR__.'/../inc/functions.php';
 session_start();
-$user = $_POST['email'];
-echo $user;
+if($_SESSION['username'] && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+  echo 'Welcome monsieur ' . $_SESSION['username'];
+} else{
+    echo "voutre IP n'est pas correct";
+    session_destroy();
+  }
 // $sql1 = 'SELECT *
 // FROM training';
 // $pdoStatement = $pdo->prepare($sql1);

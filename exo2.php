@@ -13,8 +13,10 @@ EXERCICE 2
 		** sinon, afficher l'id et l'adresse IP de l'utilisateur
 
 - pour garder la connexion du user, il faut utiliser un système de sessions en PHP
-	* rechercher quelle fonction doit être placée au début de chaque fichier appelé (public/*.php)
-	* ensuite, rechercher quelle variable superglobale (un array) on peut utiliser pour persister des données d'une page à l'autre (avec les sessions)
+	* rechercher quelle fonction doit être placée au début
+   de chaque fichier appelé (public/*.php)
+	* ensuite, rechercher quelle variable superglobale (un array) on peut
+  utiliser pour persister des données d'une page à l'autre (avec les sessions)
 	* comment est fait le lien entre l'utilisateur et la session auquel il est lié ?
 	* modifier le code du signin pour mettre en session l'id du user
 	* dans la navbar, afficher l'id de l'utilisateur connecté s'il y en a un
@@ -30,5 +32,6 @@ EXERCICE++
 
 EXERCICE-extra
 ------------------------
-- à chaque page, vérifier que l'adresse IP de l'utilisateur connecté et bien la même que celle en session. Sinon => déconnexion
+- à chaque page, vérifier que l'adresse IP de l'utilisateur connecté et
+ bien la même que celle en session. Sinon => déconnexion
 */

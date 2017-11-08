@@ -4,9 +4,13 @@
 require_once __DIR__.'/../inc/config.php';
 
 session_start();
-if($_SESSION['user']){
-  echo "welcom ".$SESSION['user'];
+if($_SESSION['username'] && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+echo 'Welcome monsieur ' . $_SESSION['username'];
+}else{
+  echo "voutre IP n'est pas correct";
+  session_destroy();
 }
+
 if (!empty($_GET['search'])) {
 
   $search = isset($_GET['search']) ? trim($_GET['search']) : '';

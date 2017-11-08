@@ -1,10 +1,13 @@
-<pre><?php
+<?php
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 session_start();
-if($_SESSION['usr_email']){
-  echo "welcom ".$SESSION['usr_email'];
+if($_SESSION['username'] && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+echo 'Welcome monsieur ' . $_SESSION['username'];
+}else{
+  echo "voutre IP n'est pas correct";
+  session_destroy();
 }
 
 if(!empty($_POST)){
@@ -49,8 +52,8 @@ if(!empty($_POST)){
 
     if($test == false){
 
-      $sql = "INSERT INTO user(usr_email, usr_password, usr_date_creation)
-      VALUES (:email,:password,NOW()) ";
+      $sql = "INSERT INTO user(usr_email, usr_password, usr_role , usr_date_creation)
+      VALUES (:email,:password, 'user', NOW()) ";
 
       $pdoStatement = $pdo->prepare($sql);
       $pdoStatement->bindValue(':email', $email, PDO::PARAM_STR);

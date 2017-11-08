@@ -1,4 +1,55 @@
 <?php
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+function sendEmqil($to, $subject, $htmlContent , $textContent=''){
+  global $config;
+// TODO move the phpmailer code here , and replace name strings with parametres
+
+
+//Load composer's autoloader
+require 'vendor/autoload.php';
+
+$mail = new PHPMailer(true);  //objet                            // Passing `true` enables exceptions
+try {
+  //Server settings
+  $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+  $mail->isSMTP();                // method                            // Set mailer to use SMTP
+  $mail->Host     = $config['MAIL_HOST'];  // Specify main and backup SMTP servers
+  $mail->SMTPAuth = true;                               // Enable SMTP authentication
+  $mail->Username = $config['MAIL_USERNAME'];                 // SMTP username
+  $mail->Password = $config['MAIL_PASSWORD'];                           // SMTP password
+  $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+  $mail->Port = 587;                                    // TCP port to connect to
+
+  // Add this and it will works
+  $mail->SMTPOptions = array(
+    'ssl' => array(
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+      'verify_self_signed' => true,
+    )
+  );
+
+  //Recipients
+  $mail->setFrom('theblack.north1989@gmail.com', 'Mailer');       // method setform
+  $mail->addAddress($to);     // Add a recipient  // method
+
+
+  //Content
+  $mail->isHTML(true);                                  // Set email format to HTML
+  $mail->Subject = $subject;
+  $mail->Body    = $htmlContent;
+  $mail->AltBody = $textContent;
+
+  $mail->send();
+  echo 'Message has been sent';
+} catch (Exception $e) {
+  echo 'Message could not be sent.';
+  echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+}
 
 
 function showAll($page){
@@ -112,6 +163,7 @@ if ($pdoStatement->execute() === false) {
 $session =$pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 return $session;
 }
+
 
 function countt(){
 

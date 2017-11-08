@@ -1,10 +1,17 @@
-<pre><?php
+<?php
 require_once __DIR__.'/../inc/config.php';
-
 session_start();
-if($_SESSION['user']){
-  echo "welcom ".$SESSION['user'];
-}
+
+if(empty($_SESSION['username'])){
+  header('Location: signin.php');
+  }elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user' || $_SESSION['role'] == 'admin' ){
+    echo 'Welcome monsieur ' . $_SESSION['username'];
+  } elseif(isset($_SESSION['username']) && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+      echo "voutre IP n'est pas correct";
+      session_destroy();
+    } else{
+        header('Location: signin.php');
+      }
 
 if(!empty($_POST['upload'])){
 

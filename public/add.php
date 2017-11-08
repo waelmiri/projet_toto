@@ -3,10 +3,20 @@
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 require_once __DIR__.'/../inc/functions.php';
+
 session_start();
-if($_SESSION['user']){
-  echo "welcom ".$SESSION['user'];
-}
+if(empty($_SESSION['username'])){
+  header('Location: signin.php');
+  }elseif(isset($_SESSION['username']) && $_SESSION['IP'] == $_SERVER['SERVER_ADDR'] && $_SESSION['role'] == 'user'){
+    echo 'Monsieur ' . $_SESSION['username'].' cher client : vous n\'avez pas le droit d\'entrer ici ' ;
+    header("HTTP/1.1 403 Forbidden");
+    exit;
+      }elseif(isset($_SESSION['username']) && $_SESSION['IP'] == $_SERVER['SERVER_ADDR'] && $_SESSION['role'] == 'admin'){
+        echo 'Welcome Monsieur ' . $_SESSION['username'];
+        }else{
+          echo "voutre IP n'est pas correct";
+          session_destroy();
+        }
 
  // récupération la ville
  // $sql = "SELECT cit_name ,cit_id FROM city";
