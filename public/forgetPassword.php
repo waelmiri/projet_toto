@@ -2,9 +2,9 @@
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 
-if(!empty($_GET)){
+if(!empty($_POST)){
 
-  $email = isset($_GET['email']) ? $_GET['email'] : 0;
+  $email = isset($_POST['email']) ? $_POST['email'] : 0;
 
   $email = trim(strip_tags($email));
 
@@ -22,6 +22,7 @@ if(!empty($_GET)){
 
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(':email' , $email, PDO::PARAM_STR);
+    var_dump($email);
     // $pdoStatement->bindValue(':password' , $password , PDO::PARAM_STR);
 
     if($pdoStatement->execute() === false){
@@ -47,7 +48,7 @@ if(!empty($_GET)){
     //  http://projet-toto.dev/reset_password.php?token='.$testEmail['usr_token'];
 
       sendEmqil($to,$subject , $textContent);
-      header("Location: reset_password.php");
+
     }
 
 // if($testAll){}

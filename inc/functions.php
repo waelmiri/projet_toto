@@ -9,7 +9,7 @@ function sendEmqil($to, $subject, $htmlContent , $textContent=''){
 
 
 //Load composer's autoloader
-require 'vendor/autoload.php';
+
 
 $mail = new PHPMailer(true);  //objet                            // Passing `true` enables exceptions
 try {

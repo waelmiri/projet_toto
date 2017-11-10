@@ -51,7 +51,7 @@ $etudiant1 = student($update);
 // }
 //
 // $etudiant1 = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-
+if(!empty($_POST)){
   $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
   $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
   $birthday = isset($_POST['birthday']) ? $_POST['birthday'] : '';
@@ -109,6 +109,7 @@ $etudiant1 = student($update);
     }
 
   }
+}
 }
 
 require_once __DIR__.'/../view/header.php';

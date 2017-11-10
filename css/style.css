@@ -3,18 +3,18 @@ body {
   background-color: #F4F4F4;
 }
 
-.signup, .signin, .forget, .reset{
+.signup, .signin, .forget{
   width: 300px;
   margin: 100px auto;
 
 }
 
 
-.signup h4, .signin h4, .forget h4, .reset h4{
+.signup, .signin, .forget h4{
   color : #888;
 }
 
-.signup input, .signin input, .forget input,.reset input{
+.signup input, .signin input, .forget input{
   margin-bottom: 10px;
 }
 
