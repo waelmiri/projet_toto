@@ -18,7 +18,7 @@
   <!-- CSS JQuery UI-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
   <!-- mon CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">

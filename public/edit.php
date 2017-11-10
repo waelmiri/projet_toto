@@ -34,7 +34,7 @@ $session = session();
 
 if (!empty($_GET['id'])) {
 $update = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$etudiant1 = student($updae);
+$etudiant1 = student($update);
 //  $sql = "SELECT  stu_lastname, stu_firstname , stu_birthdate , stu_email , ses_id,
 //   stu_friendliness , cit_name, cit_id ,ses_number, loc_name, ses_end_date , ses_start_date
 //          FROM student

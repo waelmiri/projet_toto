@@ -1,0 +1,37 @@
+
+body {
+  background-color: #F4F4F4;
+}
+
+.signup, .signin, .forget{
+  width: 300px;
+  margin: 100px auto;
+
+}
+
+
+.signup, .signin, .forget h4{
+  color : #888;
+}
+
+.signup input, .signin input, .forget input{
+  margin-bottom: 10px;
+}
+
+.form-control{
+  background-color: #EAEAEA;
+}
+
+.signin a{
+  text-align: right;
+  color: red;
+
+}
+
+.signup .btn, .frget .btn{
+  background-color: #008dde;
+}
+.signin .btn-primary{
+  background-color: #008dde;
+  margin-top: 15px;
+}

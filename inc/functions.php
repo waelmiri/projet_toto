@@ -80,7 +80,7 @@ function showAll($page){
   }
 
 
-function student($studentId){
+function student($id){
   global $pdo;
   $sql = "SELECT stu_lastname, stu_firstname , stu_birthdate , stu_email , ses_id,
    stu_friendliness , cit_name, cit_id ,ses_number, loc_name, ses_end_date , ses_start_date
@@ -92,7 +92,7 @@ function student($studentId){
 
 
   $pdoStatement = $pdo->prepare($sql);
-  $pdoStatement->bindValue(':id',$studentId , PDO::PARAM_INT);
+  $pdoStatement->bindValue(':id',$id , PDO::PARAM_INT);
 
   if ($pdoStatement->execute() === false) {
     print_r($pdoStatement->errorInfo());
@@ -164,6 +164,23 @@ $session =$pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 return $session;
 }
 
+function sessionId($ses_id){
+
+  global $pdo;
+  $sql2 = " SELECT *
+            FROM student
+            INNER JOIN session ON session.ses_id = student.session_ses_id
+            WHERE ses_id = :id";
+  $pdoStatement = $pdo->prepare($sql2);
+  $pdoStatement->bindValue(':id',$ses_id,PDO::PARAM_INT);
+
+  if ($pdoStatement->execute() === false) {
+    print_r($pdoStatement->errorInfo());
+    exit;
+  }
+  $sessionId = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+  return $sessionId;
+}
 
 function countt(){
 
@@ -234,6 +251,27 @@ function verification($email){
 
   return $test;
 
+}
+
+function testEmail($email){
+  global $pdo;
+
+  $sql = " SELECT usr_id, usr_password , usr_email , usr_role
+          FROM user
+          WHERE usr_email  = :email ";
+
+  $pdoStatement = $pdo->prepare($sql);
+  $pdoStatement->bindValue(':email' , $email, PDO::PARAM_STR);
+  // $pdoStatement->bindValue(':password' , $password , PDO::PARAM_STR);
+
+  if($pdoStatement->execute() === false){
+    print_r($pdoStatement->errorInfo());
+    exit;
+  }
+  $testEmail = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+    
+
+  return $testEmail;
 }
 
 

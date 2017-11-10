@@ -5,11 +5,14 @@
 require_once __DIR__.'/../inc/config.php';
 require_once __DIR__.'/../inc/functions.php';
 session_start();
-if($_SESSION['username'] && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
-  echo 'Welcome monsieur ' . $_SESSION['username'];
-} else{
-    echo "voutre IP n'est pas correct";
-    session_destroy();
+
+if(!empty($_SESSION['username'])){
+  if($_SESSION['username'] && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+    echo 'Welcome monsieur ' . $_SESSION['username'];
+  } else{
+      echo "voutre IP n'est pas correct";
+      session_destroy();
+    }
   }
 // $sql1 = 'SELECT *
 // FROM training';
@@ -60,7 +63,7 @@ while ($row = $pdoStatement->fetch(PDO::FETCH_ASSOC)) {
 // $arrayToBeDisplayed = array();
 // foreach($menu as $key => $value){
 // print_r($value);
-//   if($value== 'tra_name'){
+  //   if($value== 'tra_name'){
 //     $arrayToBeDisplayed = $value['tra_name'];
 //   }
 //   print_r($arrayToBeDisplayed);

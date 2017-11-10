@@ -37,11 +37,11 @@
             <td>Session n<?php echo $value['ses_number']; ?></td>
             <td><?php echo $value['ses_start_date']; ?></td>
             <td><?php echo $value['ses_end_date']; ?></td>
-            <?php if(isset($_SESSION['username'])):?>
-              <?php echo '<td><a href="list.php?id=<?php echo $value[\'ses_id\']?>" class="btn btn-success">détails</a></td>' ?>
-            <?php else: ?>
-              <?php echo ' ';?>
-            <?php endif; ?>
+            <?php// if(isset($_SESSION['username'])):?>
+            <td><a href="list.php?ses_id=<?php echo $value['ses_id']?>"class="btn btn-success">détails</a></td>
+            <?php// else: ?>
+              <?php //echo ' ';?>
+            <?php// endif; ?>
           </tr>
         <?php endforeach ; ?>
         </tbody>

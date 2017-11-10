@@ -3,34 +3,36 @@
 /*
 EXERCICE 4
 ------------------------
-- ajouter un champ (dans phpMyAdmin) nommé "usr_token" qui sera une chaine de 32 caractères
-- ajouter une page "mot de passe oublié" (public+view) dans le projet TOTO (+lien sur page signin)
-- créer le formulaire avec email
+- ajouter un champ (dans phpMyAdmin) nommï¿½ "usr_token" qui
+ sera une chaine de 32 caractï¿½res
+- ajouter une page "mot de passe oubliï¿½"
+(public+view) dans le projet TOTO (+lien sur page signin)
+- crï¿½er le formulaire avec email
 - lorsque le formulaire est soumis en POST :
-	* récupérer les données
-	* vérifier qu'elles soient valides
-	* faire une requête pour récupérer le user avec cet email
-		** si aucun résultat, affiché un message d'erreur
+	* rï¿½cupï¿½rer les donnï¿½es
+	* vï¿½rifier qu'elles soient valides
+	* faire une requï¿½te pour rï¿½cupï¿½rer le user avec cet email
+		** si aucun rï¿½sultat, affichï¿½ un message d'erreur
 		** sinon :
-			$ récupérer l'id du user
-			$ remplir par un md5() aléatoire le champ "token" de ce user
-			$ générer le lien suivant : http://projet-toto.dev/reset_password.php?token=#TOKEN# (où #TOKEN# est le md5() généré pour ce user
+			$ rï¿½cupï¿½rer l'id du user
+			$ remplir par un md5() alï¿½atoire le champ "token" de ce user
+			$ gï¿½nï¿½rer le lien suivant : http://projet-toto.dev/reset_password.php?token=#TOKEN# (oï¿½ #TOKEN# est le md5() gï¿½nï¿½rï¿½ pour ce user
 
 - ajouter une page "reset_password.php" (public+view) dans le projet TOTO (aucun lien)
-- tester si le token est présent dans l'URL (GET)
+- tester si le token est prï¿½sent dans l'URL (GET)
 - si non, => erreur
 - si oui :
-	* récupérer le token et récupérer l'ID du user correspondant au token
+	* rï¿½cupï¿½rer le token et rï¿½cupï¿½rer l'ID du user correspondant au token
 	* afficher le formulaire avec password et confirmation de password
 	* une fois le formulaire soumis :
-		** récupérer les données
-		** valider les données (taille du password et 2 passwords égaux)
+		** rï¿½cupï¿½rer les donnï¿½es
+		** valider les donnï¿½es (taille du password et 2 passwords ï¿½gaux)
 		** changer le password dans le table user (ne pas oublier le hash)
 		** vider le champ token dans la table pour le user
 		** rediriger sur la page de signin
 
 EXERCICE-extra
 ------------------------
-- lorsque le nouveau mot de passe est soumis, connecter aussitôt le user
-- lors du signup, connecter aussitôt le user
+- lorsque le nouveau mot de passe est soumis, connecter aussitï¿½t le user
+- lors du signup, connecter aussitï¿½t le user
 */
