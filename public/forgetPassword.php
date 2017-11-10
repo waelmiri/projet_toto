@@ -16,13 +16,12 @@ if(!empty($_POST)){
   }
 
   if($formOk){
-    $sql = " SELECT usr_id, usr_password , usr_email , usr_role
+    $sql = " SELECT usr_id, usr_password , usr_email , usr_role, usr_token
             FROM user
             WHERE usr_email  = :email ";
 
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(':email' , $email, PDO::PARAM_STR);
-    var_dump($email);
     // $pdoStatement->bindValue(':password' , $password , PDO::PARAM_STR);
 
     if($pdoStatement->execute() === false){
@@ -30,19 +29,39 @@ if(!empty($_POST)){
       exit;
     }
     $testEmail = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-    print_r($testEmail);
+    print_r($testEmail['usr_email']);
     // $testEmail = testEmail($email);
     $count = $pdoStatement->rowCount();
-    echo $count;
     if($count == 0){
+
       echo "<div class ='alert alert-success'>$count.'Account founds'</div>";
     }else{
-      $testEmail['usr_token'] = md5($testEmail['usr_id']);
 
-      print_r($testEmail['usr_token']);
+      $md = md5($testEmail['usr_id']);
+      echo $md;
+
+      $sql = " UPDATE user
+                SET usr_token = :token
+                WHERE usr_id = :id";
+
+      // $updateNew = $pdo->exec($sql);
+      // print_r($update['usr_token']);
+      // if ($updateNew === false) {
+      //  print_r($pdo->errorInfo());
+      // }
+
+      $pdoStatement = $pdo->prepare($sql);
+      $pdoStatement->bindValue(':id' ,$testEmail['usr_id'] , PDO::PARAM_INT);
+      $pdoStatement->bindValue(':token' ,$md , PDO::PARAM_STR );
+
+      if($pdoStatement->execute() === false){
+        print_r($pdoStatement->errorInfo());
+      }
+
+
       $to  = $email;
       $subject = 'Password Reset Link (Projet_toto)';
-      $textContent ='http://localhost/projet_toto/public/reset_password.php?token='.$testEmail['usr_token'];
+      $textContent ='http://localhost/projet_toto/public/reset_password.php?token='.$md;
       // 'Helle , You Have requested password reset!
       //please click this link to reset to enter a new password :
     //  http://projet-toto.dev/reset_password.php?token='.$testEmail['usr_token'];

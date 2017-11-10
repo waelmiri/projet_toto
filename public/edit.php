@@ -101,6 +101,7 @@ if(!empty($_POST)){
     `stu_email` = '$email', `stu_friendliness` = $friendliness, `session_ses_id` = '$session', `city_cit_id` = '$city',
     `stu_inserted` = CURRENT_TIMESTAMP WHERE stu_id =$update ";
     $updateNew = $pdo->exec($sql4);
+
     // $lastId = $pdo->lastInsertId();
     // header("Location: /student.php?id={$lastId}");
 

@@ -19,7 +19,7 @@
       <div class="form-group col-md-3">
         <label for="session">Session</label>
         <select class="form-control" placeholder="Choisissez" name="session" value="<?php echo $etudiant1['ses_name']; ?>">
-          <?php foreach ($sessions as $key => $value ): ?>
+          <?php foreach ($session as $key => $value ): ?>
             <option><?php echo $value['ses_id'];
              if($value['ses_id'] == $etudiant1['ses_id']){
                 echo 'selected';

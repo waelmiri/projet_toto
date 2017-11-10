@@ -3,6 +3,7 @@
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 function sendEmqil($to, $subject, $htmlContent , $textContent=''){
   global $config;
 // TODO move the phpmailer code here , and replace name strings with parametres
