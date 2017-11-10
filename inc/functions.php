@@ -15,7 +15,7 @@ function sendEmqil($to, $subject, $htmlContent , $textContent=''){
 $mail = new PHPMailer(true);  //objet                            // Passing `true` enables exceptions
 try {
   //Server settings
-  $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+  // $mail->SMTPDebug = 2;      pour ne pas montrer des messages quand on'en envoie                             // Enable verbose debug output
   $mail->isSMTP();                // method                            // Set mailer to use SMTP
   $mail->Host     = $config['MAIL_HOST'];  // Specify main and backup SMTP servers
   $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -45,9 +45,9 @@ try {
   $mail->AltBody = $textContent;
 
   $mail->send();
-  echo 'Message has been sent';
+  // echo 'Message has been sent';     pour ne pas montrer des messages quand on'en envoie
 } catch (Exception $e) {
-  echo 'Message could not be sent.';
+  // echo 'Message could not be sent.';    pour ne pas montrer des messages quand on'en envoie
   echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
 }

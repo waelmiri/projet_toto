@@ -1,16 +1,16 @@
-<?php
+<pre><?php
 
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
 session_start();
-if(!empty($_SESSION['username'])){
-  if(isset($_SESSION['username']) && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
-    echo 'Welcome monsieur ' . $_SESSION['username'];
-  }else{
-    echo "voutre IP n'est pas correct";
-    session_destroy();
-  }
-}
+// if(!empty($_SESSION['username'])){
+//   if(isset($_SESSION['username']) && $_SESSION['IP'] == $_SERVER['SERVER_ADDR']){
+//     echo 'Welcome monsieur ' . $_SESSION['username'];
+//   }else{
+//     echo "voutre IP n'est pas correct";
+//     session_destroy();
+//   }
+// }
 
 if(!empty($_POST)){
 
@@ -66,9 +66,12 @@ if(!empty($_POST)){
         exit;
       }
 
-      $insere = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+
 
       echo "vous avez bien inséré le user";
+      $_SESSION['username'] = $email;
+      $_SESSION['IP'] = $_SERVER['SERVER_ADDR'];
+      header("Location: index.php");
     }else {
       echo "email  existe déja";
     }

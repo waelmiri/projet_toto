@@ -1,6 +1,7 @@
-<?php
+<pre><?php
 //J'inclus la config
 require_once __DIR__.'/../inc/config.php';
+session_start();
 
 $token = isset($_GET['token']) ? trim($_GET['token']) : '';
 
@@ -65,9 +66,19 @@ if(empty($token)){
           $pdoStatement->bindValue(':token', '', PDO::PARAM_STR);
           $pdoStatement->bindValue(':password', $passHash, PDO::PARAM_STR);
 
+          print_r($id);
           if($pdoStatement->execute() === false){
             print_r($pdoStatement->errorInfo());
           }
+
+          // $update =$pdoStatement->fetch(PDO::FETCH_ASSOC);
+
+          $_SESSION['username'] = $id['usr_id'];
+          $_SESSION['IP'] = $_SERVER['SERVER_ADDR'];
+          header("Location: index.php");
+
+
+
 
         }
     }

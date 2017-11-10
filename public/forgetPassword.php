@@ -38,7 +38,6 @@ if(!empty($_POST)){
     }else{
 
       $md = md5($testEmail['usr_id']);
-      echo $md;
 
       $sql = " UPDATE user
                 SET usr_token = :token
