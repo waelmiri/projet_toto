@@ -269,7 +269,7 @@ function testEmail($email){
     exit;
   }
   $testEmail = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-    
+
 
   return $testEmail;
 }
