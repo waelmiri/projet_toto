@@ -4,3 +4,4 @@ inc/config.php
 /vendor/
 public/upload/
 public/export-20171106.csv
+composer.phar
