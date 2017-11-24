@@ -1,37 +1,40 @@
 <?php
-
 /*
-EXERCICE 3
-------------------------
-- lors de l'inscription, donner le role "user"
-- inscrire en tout au moins 2 comptes utilisateur
-- changer le rôle d'un des 2 comptes en "admin"
-- on va restreindre l'accès aux pages selon le role du user connecté :
-	* si un user est connecté mais n'a pas le droit de voir une page =>
-   afficher une page "403 Forbidden"
-	* si un user est connecté et a le droit de voir la page,
-   ne rien faire de plus (juste afficher la page normalement)
-	* si aucun user est connecté et que la page nécessite un user
-   (peu importe le role), alors rediriger vers la page de "Signin"
-	* voici la liste des pages et des roles pouvant y accéder :
-		** index : tout le monde
-		** signin : tout le monde
-		** signup : tout le monde
-		** add/edit : role "admin"
-		** toutes les autres pages : role "user" ou "admin"
+// EXERCICE 3 - Projet TOTO
+On va modifier la page list.php
+- on ne va plus faire de lien vers student.php, mais afficher un "popup" dans
+ la page list.php, lorsqu'on clique sur "Détails"
+- créer un répertoire ajax (dans public), et
+y créer un fichier student.php
+- dans la vue "list", ajouter la div suivante (et corriger si besoin)
+*/
+<div id="popupStudent" style="display:none;position:absolute;z-index:1000;left:50%;top:10%;
+margin-left:-200px;width:400px;border:1px solid black;padding:10px;background: white;">
+</div>
+/*
+- exécuter une requête ajax vers ce fichier en POST
+	* ajax/student.php récupère l'id du student
+    passé en POST
+	* puis renverra le code HTML avec
+    les informations sur le student (le code HTML
+    qu'on avait sur student.php)
+	* en JS, on va insérer ce code HTML
+    (réponse de l'Ajax) dans la div
+    (id="popupStudent") puis "afficher cette div"
 
-EXERCICE++
-------------------------
-- dans la navbar et dans list, n'afficher les liens (add, edit, etc.)
-  que si l'utilisateur connecté a le droit d'accéder à la page
-  de destination du lien
+// EXERCICE++
+- ajouter un bouton "close" dans la div qui va "cacher" la div
+- créer un fichier "ajax/add.php"
+- intercepter la soumission du formulaire d'ajout de student (add.php)
+- exécuter une requête ajax avec les données du formulaire en POST
+- la page ne se rechargeant pas, récupérer un code de retour permettant de savoir
+  si l'ajout a fonctionné ou s'il y a une erreur, et laquelle
+	(code de retour = affichage fait par ajax/add.php)
 
-EXERCICE-extra
-------------------------
-- vous pouvez vous amusez à "styliser" la page "403 Forbidden"
-- ajouter une page "users" (public+view), restreinte au role "admin" et
-  permettant de gérer les utilisateurs :
-	* liste (<table>) de tous les users
-	* pour chaque user, on a un menu déroulant des roles possibles et le role de chaque user est "selected"
-	* permettre, avec un formulaire, de changer le role d'un user
+// EXERCICE-extra "Modal" affichant les données des students
+- au lieu d'une div "absolute" dans "list", utiliser un modal (bootstrap)
+- Amélioration :
+	* ajax/student.php : ne plus renvoyer du code HTML mais un JSON
+	* ainsi, parcourir le JSON récupéré pour générer en JS le code HTML
+
 */
